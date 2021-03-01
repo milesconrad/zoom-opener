@@ -54,7 +54,7 @@ class AutoOpener implements Runnable {
                     open.second();
                     sleep.wait(3f);
                 }
-                if (time.equals("11:44:30")) {
+                if (time.equals("11:24:30")) {
                     open.third();
                     sleep.wait(3f);
                 }
@@ -68,7 +68,7 @@ class AutoOpener implements Runnable {
                     open.fifth();
                     sleep.wait(3f);
                 }
-                if (time.equals("11:44:30")) {
+                if (time.equals("11:24:30")) {
                     open.sixth();
                     sleep.wait(3f);
                 }
