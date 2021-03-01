@@ -82,49 +82,49 @@ class GUI {
 
         first.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                Links act = new Links();
+                Opener act = new Opener();
                 act.first();
             }
         });
         second.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                Links act = new Links();
+                Opener act = new Opener();
                 act.second();
             }
         });
         third.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                Links act = new Links();
+                Opener act = new Opener();
                 act.third();
             }
         });
         fourth.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                Links act = new Links();
+                Opener act = new Opener();
                 act.fourth();
             }
         });
         fifth.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                Links act = new Links();
+                Opener act = new Opener();
                 act.fifth();
             }
         });
         sixth.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                Links act = new Links();
+                Opener act = new Opener();
                 act.sixth();
             }
         });
         advis.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                Links act = new Links();
-                act.advis();
+                Opener act = new Opener();
+                act.advisory();
             }
         });
         auto.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                t = new Thread(new Auto());
+                t = new Thread(new AutoOpener());
                 t.start();
             }
         });
@@ -136,8 +136,8 @@ class GUI {
         frame.setVisible(true);
     }
 
-    public void setAuto(String st) {
-        auto.setText(st);
+    public void setAuto(String title) {
+        auto.setText(title);
     }
 
 }
