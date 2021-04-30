@@ -10,11 +10,16 @@ class AutoOpener1 implements Runnable {
         SimpleDateFormat timeformat = new SimpleDateFormat("HH:mm:ss");
         SimpleDateFormat dayformat = new SimpleDateFormat("E");
 
+        // while the thread isn't interrupted, check if the time and day matches with the
+        // class schedule
         while (!Thread.currentThread().isInterrupted()) {
+            
+            //get date and time
             gui.setAuto1("Running...");
             Date now = new Date();
             String time = timeformat.format(now);
             String day = dayformat.format(now);
+
             if (day.equals("Mon") || day.equals("Wed") || day.equals("Fri")) {
                 if (time.equals("07:52:30")) {
                     open.first();
@@ -29,6 +34,7 @@ class AutoOpener1 implements Runnable {
                     sleep.wait(3f);
                 }
             }
+
             if (day.equals("Tue") || day.equals("Thu")) {
                 if (time.equals("07:52:30")) {
                     open.fourth();
@@ -43,6 +49,7 @@ class AutoOpener1 implements Runnable {
                     sleep.wait(3f);
                 }
             }
+            
             if (day.equals("Mon")) {
                 if (time.equals("12:59:30")) {
                     open.advisory();
