@@ -12,7 +12,6 @@ class GUI {
 
     public static void main(String[] args) {
 
-        // create GUI and add buttons
         JFrame frame = new JFrame("Zoom Opener");
         JPanel panel = new JPanel();
         frame.getContentPane().add(panel);
@@ -151,7 +150,6 @@ class GUI {
         frame.setVisible(true);
     }
 
-    // methods for setting button titles
     public void setAuto1(String title) {
         auto1.setText(title);
     }

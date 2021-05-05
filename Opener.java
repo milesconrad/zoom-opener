@@ -3,7 +3,6 @@ import java.net.URI;
 
 class Opener {
     
-    // methods for opening class links in the browser
     public void first(){
         try {
             URI url1 = new URI("1st Hour Link");
