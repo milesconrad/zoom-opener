@@ -6,9 +6,19 @@ import java.awt.*;
 import java.awt.event.*;
 
 class GUI {
+    // these variables are declared here so that the thread can be interrupted
+    // and the titles for the auto buttons can be changed
     static JButton auto1;
     static JButton auto2;
     static Thread t;
+
+    static JButton createButton(String title, int x, int y, int width, int height) {
+        JButton button = new JButton(title);
+        button.setBounds(x, y, width, height);
+        button.setFocusPainted(false);
+        button.setBackground(Color.decode("#dedede"));
+        return button;
+    }
 
     public static void main(String[] args) {
 
@@ -27,67 +37,27 @@ class GUI {
         title.setFont(font);
         panel.add(title);
 
-        JButton first = new JButton("First");
-        first.setBounds(54, 96, 90, 26);
-        first.setFocusPainted(false);
-        first.setBackground(Color.decode("#dedede"));
+        JButton first = createButton("First", 54, 96, 90, 26);
+        JButton second = createButton("Second", 153, 96, 90, 26);
+        JButton third = createButton("Third", 252, 96, 90, 26);
+        JButton fourth = createButton("Fourth", 351, 96, 90, 26);
+        JButton fifth = createButton("Fifth", 104, 130, 90, 26);
+        JButton sixth = createButton("Sixth", 203, 130, 90, 26);
+        JButton advis = createButton("Advisory", 302, 130, 90, 26);
+        JButton auto1 = createButton("Auto Open 1", 193, 192, 110, 29);
+        JButton auto2 = createButton("Auto Open 2", 193, 229, 110, 29);
+        JButton cancel = createButton("Cancel", 208, 266, 80, 29);
         panel.add(first);
-
-        JButton second = new JButton("Second");
-        second.setBounds(153, 96, 90, 26);
-        second.setFocusPainted(false);
-        second.setBackground(Color.decode("#dedede"));
         panel.add(second);
-
-        JButton third = new JButton("Third");
-        third.setBounds(252, 96, 90, 26);
-        third.setFocusPainted(false);
-        third.setBackground(Color.decode("#dedede"));
         panel.add(third);
-
-        JButton fourth = new JButton("Fourth");
-        fourth.setBounds(351, 96, 90, 26);
-        fourth.setFocusPainted(false);
-        fourth.setBackground(Color.decode("#dedede"));
         panel.add(fourth);
-
-        JButton fifth = new JButton("Fifth");
-        fifth.setBounds(104, 130, 90, 26);
-        fifth.setFocusPainted(false);
-        fifth.setBackground(Color.decode("#dedede"));
         panel.add(fifth);
-
-        JButton sixth = new JButton("Sixth");
-        sixth.setBounds(203, 130, 90, 26);
-        sixth.setFocusPainted(false);
-        sixth.setBackground(Color.decode("#dedede"));
         panel.add(sixth);
-
-        JButton advis = new JButton("Advisory");
-        advis.setBounds(302, 130, 90, 26);
-        advis.setFocusPainted(false);
-        advis.setBackground(Color.decode("#dedede"));
         panel.add(advis);
-
-        auto1 = new JButton("Auto Open 1");
-        auto1.setBounds(193, 192, 110, 29);
-        auto1.setFocusPainted(false);
-        auto1.setBackground(Color.decode("#dedede"));
         panel.add(auto1);
-
-        auto2 = new JButton("Auto Open 2");
-        auto2.setBounds(193, 229, 110, 29);
-        auto2.setFocusPainted(false);
-        auto2.setBackground(Color.decode("#dedede"));
         panel.add(auto2);
-
-        JButton cancel = new JButton("Cancel");
-        cancel.setBounds(208, 266, 80, 29);
-        cancel.setFocusPainted(false);
-        cancel.setBackground(Color.decode("#dedede"));
         panel.add(cancel);
 
-        // add listeners for all of the buttons added
         first.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 Opener act = new Opener();
