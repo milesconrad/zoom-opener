@@ -44,9 +44,10 @@ class GUI {
         JButton fifth = createButton("Fifth", 104, 130, 90, 26);
         JButton sixth = createButton("Sixth", 203, 130, 90, 26);
         JButton advis = createButton("Advisory", 302, 130, 90, 26);
-        JButton auto1 = createButton("Auto Open 1", 193, 192, 110, 29);
-        JButton auto2 = createButton("Auto Open 2", 193, 229, 110, 29);
+        auto1 = createButton("Auto Open 1", 193, 192, 110, 29);
+        auto2 = createButton("Auto Open 2", 193, 229, 110, 29);
         JButton cancel = createButton("Cancel", 208, 266, 80, 29);
+        
         panel.add(first);
         panel.add(second);
         panel.add(third);
