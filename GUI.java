@@ -52,15 +52,16 @@ class GUI {
             createButton("Advisory", 302, 130, 90, 26)
         };
 
-        Method[] methods = Opener.class.getMethods();
-        Opener act = new Opener();
+        Opener open = new Opener();
         for (int i = 0; i < 7; i++) {
             final int iClone = i;
             buttons[i].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     try {
-                        methods[iClone].invoke(act);
-                    } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e1) {
+                        String buttonLabel = buttons[iClone].getText().toLowerCase();
+                        Method method = Opener.class.getMethod(buttonLabel);
+                        method.invoke(open);
+                    } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e1) {
                         e1.printStackTrace();
                     }
                 }
