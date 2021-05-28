@@ -68,6 +68,8 @@ class GUI {
             panel.add(buttons[i]);
         }
 
+        // these buttons must be created manually because their methods are 
+        // not stored in the Opener class
         auto1 = createButton("Auto Open 1", 193, 192, 110, 29);
         auto2 = createButton("Auto Open 2", 193, 229, 110, 29);
         JButton cancel = createButton("Cancel", 208, 266, 80, 29);
