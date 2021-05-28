@@ -4,10 +4,12 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.*;
 import java.awt.event.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 class GUI {
-    // these variables are declared here so that the thread can be interrupted
-    // and the titles for the auto buttons can be changed
+    // these variables are declared here so the thread can be interrupted
+    // and the button titles can be changed
     static JButton auto1;
     static JButton auto2;
     static Thread t;
@@ -21,7 +23,6 @@ class GUI {
     }
 
     public static void main(String[] args) {
-
         JFrame frame = new JFrame("Zoom Opener");
         JPanel panel = new JPanel();
         frame.getContentPane().add(panel);
@@ -37,70 +38,42 @@ class GUI {
         title.setFont(font);
         panel.add(title);
 
-        JButton first = createButton("First", 54, 96, 90, 26);
-        JButton second = createButton("Second", 153, 96, 90, 26);
-        JButton third = createButton("Third", 252, 96, 90, 26);
-        JButton fourth = createButton("Fourth", 351, 96, 90, 26);
-        JButton fifth = createButton("Fifth", 104, 130, 90, 26);
-        JButton sixth = createButton("Sixth", 203, 130, 90, 26);
-        JButton advis = createButton("Advisory", 302, 130, 90, 26);
+        JButton[] buttons = {
+            createButton("First", 54, 96, 90, 26),
+            createButton("Second", 153, 96, 90, 26),
+            createButton("Third", 252, 96, 90, 26),
+            createButton("Fourth", 351, 96, 90, 26),
+            createButton("Fifth", 104, 130, 90, 26),
+            createButton("Sixth", 203, 130, 90, 26),
+            createButton("Advisory", 302, 130, 90, 26)
+        };
+
+        Method[] methods = Opener.class.getMethods();
+        Opener act = new Opener();
+        for (int i = 0; i < 7; i++) {
+            final int iClone = i;
+            buttons[i].addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        methods[iClone].invoke(act);
+                    } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            });
+            panel.add(buttons[i]);
+        }
+
+        // these buttons must be created manually because their methods are 
+        // not stored in the Opener class
         auto1 = createButton("Auto Open 1", 193, 192, 110, 29);
         auto2 = createButton("Auto Open 2", 193, 229, 110, 29);
         JButton cancel = createButton("Cancel", 208, 266, 80, 29);
-        
-        panel.add(first);
-        panel.add(second);
-        panel.add(third);
-        panel.add(fourth);
-        panel.add(fifth);
-        panel.add(sixth);
-        panel.add(advis);
+
         panel.add(auto1);
         panel.add(auto2);
         panel.add(cancel);
 
-        first.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e) {
-                Opener act = new Opener();
-                act.first();
-            }
-        });
-        second.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e) {
-                Opener act = new Opener();
-                act.second();
-            }
-        });
-        third.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e) {
-                Opener act = new Opener();
-                act.third();
-            }
-        });
-        fourth.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e) {
-                Opener act = new Opener();
-                act.fourth();
-            }
-        });
-        fifth.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e) {
-                Opener act = new Opener();
-                act.fifth();
-            }
-        });
-        sixth.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e) {
-                Opener act = new Opener();
-                act.sixth();
-            }
-        });
-        advis.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e) {
-                Opener act = new Opener();
-                act.advisory();
-            }
-        });
         auto1.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 t = new Thread(new AutoOpener1());
@@ -127,5 +100,4 @@ class GUI {
     public void setAuto2(String title) {
         auto2.setText(title);
     }
-
 }
