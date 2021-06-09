@@ -55,6 +55,6 @@ class AutoOpener1 implements Runnable {
             }
             sleep.wait(0.5f);
         }
-        gui.setAuto1("Auto Open");
+        gui.setAuto1("Auto Open 1");
     }   
 }
