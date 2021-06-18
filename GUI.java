@@ -17,8 +17,9 @@ class GUI {
     static JButton createButton(String title, int x, int y, int width, int height) {
         JButton button = new JButton(title);
         button.setBounds(x, y, width, height);
+        button.setForeground(Color.decode("#dbdbdb"));
         button.setFocusPainted(false);
-        button.setBackground(Color.decode("#dedede"));
+        button.setContentAreaFilled(false);
         return button;
     }
 
@@ -31,11 +32,13 @@ class GUI {
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         panel.setLayout(null);
+        panel.setBackground(Color.decode("#202020"));
 
         JLabel title = new JLabel("Automatic Zoom Opener");
         title.setBounds(136, 35, 224, 26);
         Font font = new Font("Arial", Font.BOLD, 18);
         title.setFont(font);
+        title.setForeground(Color.decode("#dbdbdb"));
         panel.add(title);
 
         JButton[] buttons = {
