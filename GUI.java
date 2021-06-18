@@ -8,8 +8,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 class GUI {
-    // these variables are declared here so that the thread can be interrupted
-    // and the titles for the auto buttons can be changed
+    // these variables are declared here so the thread can be interrupted
+    // and the button titles can be changed
     static JButton auto1;
     static JButton auto2;
     static Thread t;
@@ -24,7 +24,6 @@ class GUI {
     }
 
     public static void main(String[] args) {
-
         JFrame frame = new JFrame("Zoom Opener");
         JPanel panel = new JPanel();
         frame.getContentPane().add(panel);
@@ -105,5 +104,4 @@ class GUI {
     public void setAuto2(String title) {
         auto2.setText(title);
     }
-
 }
