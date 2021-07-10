@@ -1,9 +1,9 @@
 from sys import exit
 from threading import Thread
-from time import sleep, strftime as getdate
+from time import sleep, strftime as get_date
 import tkinter
 from tkinter import messagebox
-from webbrowser import open as openURL
+from webbrowser import open as open_URL
 
 urls = [
     'https://oneoakland.webex.com/meet/chisnell',
@@ -27,50 +27,50 @@ schedule = [
     }
 ]
 running = False
-lastButton = None
-lastTitle = None
+last_button = None
+last_title = None
 
-def createButton(context, text, x, y, width, function):
+def create_button(context, text, x, y, width, function):
     button = tkinter.Button(context, command=function, text=text, font=('arial bold', 10,))
     button.place(x=x, y=y, width=width, height=30)
     return button
 
-def autoOpen(schedule):
+def auto_open(schedule):
     while running:
-        currentTime = getdate('%H:%M:%S')
-        currentDay = getdate('%A')
+        current_time = get_date('%H:%M:%S')
+        current_day = get_date('%A')
 
         for days in schedule:
-            if days.find(currentDay) != -1:
+            if days.find(current_day) != -1:
                 for times in schedule[days]:
-                    if currentTime == times[0]:
-                        openURL(urls[times[1]])
+                    if current_time == times[0]:
+                        open_URL(urls[times[1]])
                         sleep(2)
         sleep(0.5)
     exit()
 
-def startLoop(scheduleChoice, schedule, button):
+def start_loop(schedule_choice, schedule, button):
     global running
-    global lastButton
-    global lastTitle
+    global last_button
+    global last_title
     # makes sure you can't start another thread when one is already running
     if not running:
-        schedule = schedule[scheduleChoice]
+        schedule = schedule[schedule_choice]
 
-        lastButton = button
-        lastTitle = lastButton.cget('text')
-        lastButton.config(text='Running...')
+        last_button = button
+        last_title = last_button.cget('text')
+        last_button.config(text='Running...')
 
         running = True
-        Thread(target=autoOpen, args=(schedule,)).start()
+        Thread(target=auto_open, args=(schedule,)).start()
 
-def stopLoop():
+def stop_loop():
     global running
-    global lastButton
-    global lastTitle
+    global last_button
+    global last_title
     # stops the thread and changes the button title back to what it was
     if running:
-        lastButton.config(text=lastTitle)
+        last_button.config(text=last_title)
         running = False 
 
 window = tkinter.Tk()
@@ -85,17 +85,17 @@ window.geometry(f'500x315+{width}+{height}')
 title = tkinter.Label(window, text='Auto Zoom Opener', font=('arial bold', 12,))
 title.place(x=150, y=30, width=200, height=15)
 
-createButton(window, 'First', 55, 75, 90, lambda:openURL(urls[1]))
-createButton(window, 'Second', 155, 75, 90, lambda:openURL(urls[2]))
-createButton(window, 'Third', 255, 75, 90, lambda:openURL(urls[3]))
-createButton(window, 'Fourth', 355, 75, 90, lambda:openURL(urls[4]))
-createButton(window, 'Fifth', 100, 115, 90, lambda:openURL(urls[5]))
-createButton(window, 'Sixth', 200, 115, 90, lambda:openURL(urls[6]))
-createButton(window, 'Advisory', 300, 115, 90, lambda:openURL(urls[0]))
+create_button(window, 'First', 55, 75, 90, lambda:open_URL(urls[1]))
+create_button(window, 'Second', 155, 75, 90, lambda:open_URL(urls[2]))
+create_button(window, 'Third', 255, 75, 90, lambda:open_URL(urls[3]))
+create_button(window, 'Fourth', 355, 75, 90, lambda:open_URL(urls[4]))
+create_button(window, 'Fifth', 100, 115, 90, lambda:open_URL(urls[5]))
+create_button(window, 'Sixth', 200, 115, 90, lambda:open_URL(urls[6]))
+create_button(window, 'Advisory', 300, 115, 90, lambda:open_URL(urls[0]))
 
-auto123btn = createButton(window, 'Auto Open (1, 2, 3)', 175, 175, 150, lambda:startLoop(0, schedule, auto123btn))
-auto456btn = createButton(window, 'Auto Open (4, 5, 6)', 175, 215, 150, lambda:startLoop(1, schedule, auto456btn))
-createButton(window, 'Cancel', 205, 255, 90, stopLoop)
+auto_open_123 = create_button(window, 'Auto Open (1, 2, 3)', 175, 175, 150, lambda:start_loop(0, schedule, auto_open_123))
+auto_open_456 = create_button(window, 'Auto Open (4, 5, 6)', 175, 215, 150, lambda:start_loop(1, schedule, auto_open_456))
+create_button(window, 'Cancel', 205, 255, 90, stop_loop)
 
 def ask_quit():
     global running
