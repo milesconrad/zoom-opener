@@ -6,13 +6,13 @@ from tkinter import messagebox
 from webbrowser import open as open_URL
 
 urls = [
-    'https://oneoakland.webex.com/meet/chisnell',
-    'https://oneoakland.webex.com/meet/david.weeks',
-    'https://oneoakland.webex.com/meet/kirsten.williams',
-    'https://oneoakland.webex.com/meet/mrcastle',
-    'https://oneoakland.webex.com/meet/alec.snyder',
-    'https://oneoakland.webex.com/meet/kristen.elsner',
-    'https://oneoakland.webex.com/meet/jennifer.hull'
+    'first hour link',
+    'second hour link',
+    'third hour link',
+    'fourth hour link',
+    'fifth hour link',
+    'sixth hour link',
+    'advisory link'
 ]
 schedule = [
     {
